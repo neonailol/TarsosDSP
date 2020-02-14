@@ -1,25 +1,25 @@
 /*
-*      _______                       _____   _____ _____  
-*     |__   __|                     |  __ \ / ____|  __ \ 
-*        | | __ _ _ __ ___  ___  ___| |  | | (___ | |__) |
-*        | |/ _` | '__/ __|/ _ \/ __| |  | |\___ \|  ___/ 
-*        | | (_| | |  \__ \ (_) \__ \ |__| |____) | |     
-*        |_|\__,_|_|  |___/\___/|___/_____/|_____/|_|     
-*                                                         
-* -------------------------------------------------------------
-*
-* TarsosDSP is developed by Joren Six at IPEM, University Ghent
-*  
-* -------------------------------------------------------------
-*
-*  Info: http://0110.be/tag/TarsosDSP
-*  Github: https://github.com/JorenSix/TarsosDSP
-*  Releases: http://0110.be/releases/TarsosDSP/
-*  
-*  TarsosDSP includes modified source code by various authors,
-*  for credits and info, see README.
-* 
-*/
+ *      _______                       _____   _____ _____
+ *     |__   __|                     |  __ \ / ____|  __ \
+ *        | | __ _ _ __ ___  ___  ___| |  | | (___ | |__) |
+ *        | |/ _` | '__/ __|/ _ \/ __| |  | |\___ \|  ___/
+ *        | | (_| | |  \__ \ (_) \__ \ |__| |____) | |
+ *        |_|\__,_|_|  |___/\___/|___/_____/|_____/|_|
+ *
+ * -------------------------------------------------------------
+ *
+ * TarsosDSP is developed by Joren Six at IPEM, University Ghent
+ *
+ * -------------------------------------------------------------
+ *
+ *  Info: http://0110.be/tag/TarsosDSP
+ *  Github: https://github.com/JorenSix/TarsosDSP
+ *  Releases: http://0110.be/releases/TarsosDSP/
+ *
+ *  TarsosDSP includes modified source code by various authors,
+ *  for credits and info, see README.
+ *
+ */
 
 /******************************************************************************
  *
@@ -175,7 +175,7 @@ public class Resampler {
     public boolean process(double factor, SampleBuffers buffers, boolean lastBatch) {
         if (factor < this.minFactor || factor > this.maxFactor) {
             throw new IllegalArgumentException("factor " + factor + " is not between minFactor=" + minFactor
-                    + " and maxFactor=" + maxFactor);
+                                               + " and maxFactor=" + maxFactor);
         }
 
         int outBufferLen = buffers.getOutputBufferLength();
@@ -366,17 +366,26 @@ public class Resampler {
     /**
      * Process a batch of samples. Alternative interface if you prefer to work with arrays.
      *
-     * @param factor         resampling rate for this batch
-     * @param inBuffer       array containing input samples in the range -1.0 to 1.0
-     * @param inBufferOffset offset into inBuffer at which to start processing
-     * @param inBufferLen    number of valid elements in the inputBuffer
-     * @param lastBatch      pass true if this is the last batch of samples
-     * @param outBuffer      array to hold the resampled data
+     * @param factor          resampling rate for this batch
+     * @param inBuffer        array containing input samples in the range -1.0 to 1.0
+     * @param inBufferOffset  offset into inBuffer at which to start processing
+     * @param inBufferLen     number of valid elements in the inputBuffer
+     * @param lastBatch       pass true if this is the last batch of samples
+     * @param outBuffer       array to hold the resampled data
      * @param outBufferOffset Offset in the output buffer.
      * @param outBufferLen    Output buffer length.
      * @return the number of samples consumed and generated
      */
-    public Result process(double factor, float[] inBuffer, int inBufferOffset, int inBufferLen, boolean lastBatch, float[] outBuffer, int outBufferOffset, int outBufferLen) {
+    public Result process(
+        double factor,
+        float[] inBuffer,
+        int inBufferOffset,
+        int inBufferLen,
+        boolean lastBatch,
+        float[] outBuffer,
+        int outBufferOffset,
+        int outBufferLen
+    ) {
         FloatBuffer inputBuffer = FloatBuffer.wrap(inBuffer, inBufferOffset, inBufferLen);
         FloatBuffer outputBuffer = FloatBuffer.wrap(outBuffer, outBufferOffset, outBufferLen);
 
@@ -386,13 +395,14 @@ public class Resampler {
     }
 
 
-
     /*
      * Sampling rate up-conversion only subroutine; Slightly faster than
      * down-conversion;
      */
-    private int lrsSrcUp(float X[], float Y[], double factor, int Nx, int Nwing, float LpScl, float Imp[],
-                         float ImpD[], boolean Interp) {
+    private int lrsSrcUp(
+        float X[], float Y[], double factor, int Nx, int Nwing, float LpScl, float Imp[],
+        float ImpD[], boolean Interp
+    ) {
 
         float[] Xp_array = X;
         int Xp_index;
@@ -429,8 +439,10 @@ public class Resampler {
         return Yp_index; // Return the number of output samples
     }
 
-    private int lrsSrcUD(float X[], float Y[], double factor, int Nx, int Nwing, float LpScl, float Imp[],
-                         float ImpD[], boolean Interp) {
+    private int lrsSrcUD(
+        float X[], float Y[], double factor, int Nx, int Nwing, float LpScl, float Imp[],
+        float ImpD[], boolean Interp
+    ) {
 
         float[] Xp_array = X;
         int Xp_index;

@@ -4,10 +4,8 @@ import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.util.Log;
-
 import be.tarsos.dsp.AudioEvent;
 import be.tarsos.dsp.AudioProcessor;
-import be.tarsos.dsp.io.TarsosDSPAudioFloatConverter;
 import be.tarsos.dsp.io.TarsosDSPAudioFormat;
 
 /**
@@ -33,11 +31,11 @@ public class AndroidAudioPlayer implements AudioProcessor {
     /**
      * Constructs a new AndroidAudioPlayer from an audio format, default buffer size and stream type.
      *
-     * @param audioFormat The audio format of the stream that this AndroidAudioPlayer will process.
-     *                    This can only be 1 channel, PCM 16 bit.
-     * @param bufferSizeInSamples  The requested buffer size in samples.
-     * @param streamType  The type of audio stream that the internal AudioTrack should use. For
-     *                    example, {@link AudioManager#STREAM_MUSIC}.
+     * @param audioFormat         The audio format of the stream that this AndroidAudioPlayer will process.
+     *                            This can only be 1 channel, PCM 16 bit.
+     * @param bufferSizeInSamples The requested buffer size in samples.
+     * @param streamType          The type of audio stream that the internal AudioTrack should use. For
+     *                            example, {@link AudioManager#STREAM_MUSIC}.
      * @throws IllegalArgumentException if audioFormat is not valid or if the requested buffer size is invalid.
      * @see AudioTrack
      */
@@ -50,22 +48,32 @@ public class AndroidAudioPlayer implements AudioProcessor {
         int sampleRate = (int) audioFormat.getSampleRate();
 
         //The buffer size in bytes is twice the buffer size expressed in samples if 16bit samples are used:
-        int bufferSizeInBytes = bufferSizeInSamples * audioFormat.getSampleSizeInBits()/8;
+        int bufferSizeInBytes = bufferSizeInSamples * audioFormat.getSampleSizeInBits() / 8;
 
         // From the Android API about getMinBufferSize():
         // The total size (in bytes) of the internal buffer where audio data is read from for playback.
         // If track's creation mode is MODE_STREAM, you can write data into this buffer in chunks less than or equal to this size,
         // and it is typical to use chunks of 1/2 of the total size to permit double-buffering. If the track's creation mode is MODE_STATIC,
-        // this is the maximum length sample, or audio clip, that can be played by this instance. See getMinBufferSize(int, int, int) to determine
+        // this is the maximum length sample, or audio clip, that can be played by this instance. See getMinBufferSize(int, int, int) to
+        // determine
         // the minimum required buffer size for the successful creation of an AudioTrack instance in streaming mode. Using values smaller
         // than getMinBufferSize() will result in an initialization failure.
-        int minBufferSizeInBytes = AudioTrack.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_OUT_MONO,  AudioFormat.ENCODING_PCM_16BIT);
-        if(minBufferSizeInBytes > bufferSizeInBytes){
-            throw new IllegalArgumentException("The buffer size should be at least " + (minBufferSizeInBytes/(audioFormat.getSampleSizeInBits()/8)) + " (samples) according to  AudioTrack.getMinBufferSize().");
+        int minBufferSizeInBytes = AudioTrack.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT);
+        if (minBufferSizeInBytes > bufferSizeInBytes) {
+            throw new IllegalArgumentException("The buffer size should be at least " +
+                                               (minBufferSizeInBytes / (audioFormat.getSampleSizeInBits() / 8)) +
+                                               " (samples) according to  AudioTrack.getMinBufferSize().");
         }
 
         //http://developer.android.com/reference/android/media/AudioTrack.html#AudioTrack(int, int, int, int, int, int)
-        audioTrack = new AudioTrack(streamType, sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSizeInBytes,AudioTrack.MODE_STREAM);
+        audioTrack = new AudioTrack(
+            streamType,
+            sampleRate,
+            AudioFormat.CHANNEL_OUT_MONO,
+            AudioFormat.ENCODING_PCM_16BIT,
+            bufferSizeInBytes,
+            AudioTrack.MODE_STREAM
+        );
 
         audioTrack.play();
     }
@@ -90,7 +98,7 @@ public class AndroidAudioPlayer implements AudioProcessor {
         byte[] byteBuffer = audioEvent.getByteBuffer();
 
         //int ret = audioTrack.write(audioEvent.getFloatBuffer(),overlapInSamples,stepSizeInSamples,AudioTrack.WRITE_BLOCKING);
-        int ret = audioTrack.write(byteBuffer,overlapInSamples*2,stepSizeInSamples*2);
+        int ret = audioTrack.write(byteBuffer, overlapInSamples * 2, stepSizeInSamples * 2);
         if (ret < 0) {
             Log.e(TAG, "AudioTrack.write returned error code " + ret);
         }

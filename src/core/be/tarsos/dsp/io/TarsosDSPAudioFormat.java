@@ -1,25 +1,25 @@
 /*
-*      _______                       _____   _____ _____  
-*     |__   __|                     |  __ \ / ____|  __ \ 
-*        | | __ _ _ __ ___  ___  ___| |  | | (___ | |__) |
-*        | |/ _` | '__/ __|/ _ \/ __| |  | |\___ \|  ___/ 
-*        | | (_| | |  \__ \ (_) \__ \ |__| |____) | |     
-*        |_|\__,_|_|  |___/\___/|___/_____/|_____/|_|     
-*                                                         
-* -------------------------------------------------------------
-*
-* TarsosDSP is developed by Joren Six at IPEM, University Ghent
-*  
-* -------------------------------------------------------------
-*
-*  Info: http://0110.be/tag/TarsosDSP
-*  Github: https://github.com/JorenSix/TarsosDSP
-*  Releases: http://0110.be/releases/TarsosDSP/
-*  
-*  TarsosDSP includes modified source code by various authors,
-*  for credits and info, see README.
-* 
-*/
+ *      _______                       _____   _____ _____
+ *     |__   __|                     |  __ \ / ____|  __ \
+ *        | | __ _ _ __ ___  ___  ___| |  | | (___ | |__) |
+ *        | |/ _` | '__/ __|/ _ \/ __| |  | |\___ \|  ___/
+ *        | | (_| | |  \__ \ (_) \__ \ |__| |____) | |
+ *        |_|\__,_|_|  |___/\___/|___/_____/|_____/|_|
+ *
+ * -------------------------------------------------------------
+ *
+ * TarsosDSP is developed by Joren Six at IPEM, University Ghent
+ *
+ * -------------------------------------------------------------
+ *
+ *  Info: http://0110.be/tag/TarsosDSP
+ *  Github: https://github.com/JorenSix/TarsosDSP
+ *  Releases: http://0110.be/releases/TarsosDSP/
+ *
+ *  TarsosDSP includes modified source code by various authors,
+ *  for credits and info, see README.
+ *
+ */
 
 package be.tarsos.dsp.io;
 
@@ -57,8 +57,10 @@ import java.util.Map;
  * By examing the information stored in the audio format, you can discover how to interpret the bits in the
  * binary sound data.
  * <p>
- * Every data LineWavelet has an audio format associated with its data stream. The audio format of a source (playback) data LineWavelet indicates
- * what kind of data the data LineWavelet expects to receive for output.  For a target (capture) data LineWavelet, the audio format specifies the kind
+ * Every data LineWavelet has an audio format associated with its data stream. The audio format of a source (playback) data LineWavelet
+ * indicates
+ * what kind of data the data LineWavelet expects to receive for output.  For a target (capture) data LineWavelet, the audio format
+ * specifies the kind
  * of the data that can be read from the LineWavelet.
  * Sound files also have audio formats, of course.
  * <p>
@@ -66,7 +68,7 @@ import java.util.Map;
  * pulse-code modulation (PCM), mu-law encoding, and a-law encoding.  These encoding techniques are predefined,
  * but service providers can create new encoding types.
  * The encoding that a specific format uses is named by its <code>encoding</code> field.
- *<p>
+ * <p>
  * In addition to the encoding, the audio format includes other properties that further specify the exact
  * arrangement of the data.
  * These include the number of channels, sample rate, sample size, byte order, frame rate, and frame size.
@@ -135,7 +137,7 @@ import java.util.Map;
 public class TarsosDSPAudioFormat {
 
     // INSTANCE VARIABLES
-	
+
 
     /**
      * The audio encoding technique used by this format.
@@ -173,28 +175,33 @@ public class TarsosDSPAudioFormat {
     protected boolean bigEndian;
 
 
-    /** The set of properties */
+    /**
+     * The set of properties
+     */
     private HashMap<String, Object> properties;
-    
+
     public static final int NOT_SPECIFIED = -1;
 
 
     /**
      * Constructs an <code>AudioFormat</code> with the given parameters.
      * The encoding specifies the convention used to represent the data.
-     * The other parameters are further explained in the 
-     * @param encoding                  the audio encoding technique
-     * @param sampleRate                the number of samples per second
-     * @param sampleSizeInBits  the number of bits in each sample
-     * @param channels                  the number of channels (1 for mono, 2 for stereo, and so on)
-     * @param frameSize                 the number of bytes in each frame
-     * @param frameRate                 the number of frames per second
-     * @param bigEndian                 indicates whether the data for a single sample
-     *                                                  is stored in big-endian byte order (<code>false</code>
-     *                                                  means little-endian)
+     * The other parameters are further explained in the
+     *
+     * @param encoding         the audio encoding technique
+     * @param sampleRate       the number of samples per second
+     * @param sampleSizeInBits the number of bits in each sample
+     * @param channels         the number of channels (1 for mono, 2 for stereo, and so on)
+     * @param frameSize        the number of bytes in each frame
+     * @param frameRate        the number of frames per second
+     * @param bigEndian        indicates whether the data for a single sample
+     *                         is stored in big-endian byte order (<code>false</code>
+     *                         means little-endian)
      */
-    public TarsosDSPAudioFormat(Encoding encoding, float sampleRate, int sampleSizeInBits,
-                       int channels, int frameSize, float frameRate, boolean bigEndian) {
+    public TarsosDSPAudioFormat(
+        Encoding encoding, float sampleRate, int sampleSizeInBits,
+        int channels, int frameSize, float frameRate, boolean bigEndian
+    ) {
 
         this.encoding = encoding;
         this.sampleRate = sampleRate;
@@ -210,7 +217,8 @@ public class TarsosDSPAudioFormat {
     /**
      * Constructs an <code>AudioFormat</code> with the given parameters.
      * The encoding specifies the convention used to represent the data.
-     * The other parameters are further explained in the 
+     * The other parameters are further explained in the
+     *
      * @param encoding         the audio encoding technique
      * @param sampleRate       the number of samples per second
      * @param sampleSizeInBits the number of bits in each sample
@@ -223,15 +231,17 @@ public class TarsosDSPAudioFormat {
      *                         (<code>false</code> means little-endian)
      * @param properties       a <code>Map&lt;String,Object&gt;</code> object
      *                         containing format properties
-     *
      * @since 1.5
      */
-    public TarsosDSPAudioFormat(Encoding encoding, float sampleRate,
-                       int sampleSizeInBits, int channels,
-                       int frameSize, float frameRate,
-                       boolean bigEndian, Map<String, Object> properties) {
+    public TarsosDSPAudioFormat(
+        Encoding encoding, float sampleRate,
+        int sampleSizeInBits, int channels,
+        int frameSize, float frameRate,
+        boolean bigEndian, Map<String, Object> properties
+    ) {
         this(encoding, sampleRate, sampleSizeInBits, channels,
-             frameSize, frameRate, bigEndian);
+             frameSize, frameRate, bigEndian
+        );
         this.properties = new HashMap<String, Object>(properties);
     }
 
@@ -242,26 +252,30 @@ public class TarsosDSPAudioFormat {
      * required to contain one sample from each channel, and the frame rate
      * is set to the sample rate.
      *
-     * @param sampleRate                the number of samples per second
-     * @param sampleSizeInBits  the number of bits in each sample
-     * @param channels                  the number of channels (1 for mono, 2 for stereo, and so on)
-     * @param signed                    indicates whether the data is signed or unsigned
-     * @param bigEndian                 indicates whether the data for a single sample
-     *                                                  is stored in big-endian byte order (<code>false</code>
-     *                                                  means little-endian)
+     * @param sampleRate       the number of samples per second
+     * @param sampleSizeInBits the number of bits in each sample
+     * @param channels         the number of channels (1 for mono, 2 for stereo, and so on)
+     * @param signed           indicates whether the data is signed or unsigned
+     * @param bigEndian        indicates whether the data for a single sample
+     *                         is stored in big-endian byte order (<code>false</code>
+     *                         means little-endian)
      */
-    public TarsosDSPAudioFormat(float sampleRate, int sampleSizeInBits,
-                       int channels, boolean signed, boolean bigEndian) {
+    public TarsosDSPAudioFormat(
+        float sampleRate, int sampleSizeInBits,
+        int channels, boolean signed, boolean bigEndian
+    ) {
 
-        this((signed == true ? Encoding.PCM_SIGNED : Encoding.PCM_UNSIGNED),
-             sampleRate,
-             sampleSizeInBits,
-             channels,
-             (channels == NOT_SPECIFIED || sampleSizeInBits == NOT_SPECIFIED)?
-             NOT_SPECIFIED:
-             ((sampleSizeInBits + 7) / 8) * channels,
-             sampleRate,
-             bigEndian);
+        this(
+            (signed == true ? Encoding.PCM_SIGNED : Encoding.PCM_UNSIGNED),
+            sampleRate,
+            sampleSizeInBits,
+            channels,
+            (channels == NOT_SPECIFIED || sampleSizeInBits == NOT_SPECIFIED) ?
+            NOT_SPECIFIED :
+            ((sampleSizeInBits + 7) / 8) * channels,
+            sampleRate,
+            bigEndian
+        );
     }
 
     /**
@@ -286,9 +300,9 @@ public class TarsosDSPAudioFormat {
      * <code>AudioSystem.NOT_SPECIFIED</code> means that any sample rate is
      * acceptable. <code>AudioSystem.NOT_SPECIFIED</code> is also returned when
      * the sample rate is not defined for this audio format.
+     *
      * @return the number of samples per second,
      * or <code>AudioSystem.NOT_SPECIFIED</code>
-     *
      * @see #getFrameRate()
      */
     public float getSampleRate() {
@@ -304,9 +318,9 @@ public class TarsosDSPAudioFormat {
      * <code>AudioSystem.NOT_SPECIFIED</code> means that any sample size is
      * acceptable. <code>AudioSystem.NOT_SPECIFIED</code> is also returned when
      * the sample size is not defined for this audio format.
+     *
      * @return the number of bits in each sample,
      * or <code>AudioSystem.NOT_SPECIFIED</code>
-     *
      * @see #getFrameSize()
      */
     public int getSampleSizeInBits() {
@@ -319,9 +333,9 @@ public class TarsosDSPAudioFormat {
      * When this AudioFormat is used for queries  or capabilities , a return value of
      * <code>AudioSystem.NOT_SPECIFIED</code> means that any (positive) number of channels is
      * acceptable.
+     *
      * @return The number of channels (1 for mono, 2 for stereo, etc.),
      * or <code>AudioSystem.NOT_SPECIFIED</code>
-     *
      */
     public int getChannels() {
 
@@ -334,9 +348,9 @@ public class TarsosDSPAudioFormat {
      * <code>AudioSystem.NOT_SPECIFIED</code> means that any frame size is
      * acceptable. <code>AudioSystem.NOT_SPECIFIED</code> is also returned when
      * the frame size is not defined for this audio format.
+     *
      * @return the number of bytes per frame,
      * or <code>AudioSystem.NOT_SPECIFIED</code>
-     *
      * @see #getSampleSizeInBits()
      */
     public int getFrameSize() {
@@ -350,9 +364,9 @@ public class TarsosDSPAudioFormat {
      * <code>AudioSystem.NOT_SPECIFIED</code> means that any frame rate is
      * acceptable. <code>AudioSystem.NOT_SPECIFIED</code> is also returned when
      * the frame rate is not defined for this audio format.
+     *
      * @return the number of frames per second,
      * or <code>AudioSystem.NOT_SPECIFIED</code>
-     *
      * @see #getSampleRate()
      */
     public float getFrameRate() {
@@ -365,6 +379,7 @@ public class TarsosDSPAudioFormat {
      * Indicates whether the audio data is stored in big-endian or little-endian
      * byte order.  If the sample size is not more than one byte, the return value is
      * irrelevant.
+     *
      * @return <code>true</code> if the data is stored in big-endian byte order,
      * <code>false</code> if little-endian
      */
@@ -380,21 +395,20 @@ public class TarsosDSPAudioFormat {
      * the.
      *
      * @return a <code>Map&lt;String,Object&gt;</code> object containing
-     *         all properties. If no properties are recognized, an empty map is
-     *         returned.
-     *
+     * all properties. If no properties are recognized, an empty map is
+     * returned.
      * @see #getProperty(String)
      * @since 1.5
      */
     @SuppressWarnings("unchecked")
-	public Map<String,Object> properties() {
-        Map<String,Object> ret;
+    public Map<String, Object> properties() {
+        Map<String, Object> ret;
         if (properties == null) {
-            ret = new HashMap<String,Object>(0);
+            ret = new HashMap<String, Object>(0);
         } else {
-            ret = (Map<String,Object>) (properties.clone());
+            ret = (Map<String, Object>) (properties.clone());
         }
-        return (Map<String,Object>) Collections.unmodifiableMap(ret);
+        return (Map<String, Object>) Collections.unmodifiableMap(ret);
     }
 
 
@@ -409,8 +423,7 @@ public class TarsosDSPAudioFormat {
      *
      * @param key the key of the desired property
      * @return the value of the property with the specified key,
-     *         or <code>null</code> if the property does not exist.
-     *
+     * or <code>null</code> if the property does not exist.
      * @see #properties()
      * @since 1.5
      */
@@ -443,13 +456,14 @@ public class TarsosDSPAudioFormat {
     public boolean matches(TarsosDSPAudioFormat format) {
 
         if (format.getEncoding().equals(getEncoding()) &&
-            ( (format.getSampleRate() == (float)NOT_SPECIFIED) || (format.getSampleRate() == getSampleRate()) ) &&
+            ((format.getSampleRate() == (float) NOT_SPECIFIED) || (format.getSampleRate() == getSampleRate())) &&
             (format.getSampleSizeInBits() == getSampleSizeInBits()) &&
-            (format.getChannels() == getChannels() &&
-             (format.getFrameSize() == getFrameSize()) &&
-             ( (format.getFrameRate() == (float)NOT_SPECIFIED) || (format.getFrameRate() == getFrameRate()) ) &&
-             ( (format.getSampleSizeInBits() <= 8)  || (format.isBigEndian() == isBigEndian()) ) ) )
-            return true;
+            (
+                format.getChannels() == getChannels() &&
+                (format.getFrameSize() == getFrameSize()) &&
+                ((format.getFrameRate() == (float) NOT_SPECIFIED) || (format.getFrameRate() == getFrameRate())) &&
+                ((format.getSampleSizeInBits() <= 8) || (format.isBigEndian() == isBigEndian()))
+            )) { return true; }
 
         return false;
     }
@@ -485,22 +499,21 @@ public class TarsosDSPAudioFormat {
         String sChannels;
         if (getChannels() == 1) {
             sChannels = "mono, ";
-        } else
-            if (getChannels() == 2) {
-                sChannels = "stereo, ";
+        } else if (getChannels() == 2) {
+            sChannels = "stereo, ";
+        } else {
+            if (getChannels() == NOT_SPECIFIED) {
+                sChannels = " unknown number of channels, ";
             } else {
-                if (getChannels() == NOT_SPECIFIED) {
-                    sChannels = " unknown number of channels, ";
-                } else {
-                    sChannels = ""+getChannels()+" channels, ";
-                }
+                sChannels = "" + getChannels() + " channels, ";
             }
+        }
 
         String sFrameSize;
         if (getFrameSize() == (float) NOT_SPECIFIED) {
             sFrameSize = "unknown frame size, ";
         } else {
-            sFrameSize = "" + getFrameSize()+ " bytes/frame, ";
+            sFrameSize = "" + getFrameSize() + " bytes/frame, ";
         }
 
         String sFrameRate = "";
@@ -513,10 +526,14 @@ public class TarsosDSPAudioFormat {
         }
 
         String sEndian = "";
-        if ((getEncoding().equals(Encoding.PCM_SIGNED)
-             || getEncoding().equals(Encoding.PCM_UNSIGNED))
-            && ((getSampleSizeInBits() > 8)
-                || (getSampleSizeInBits() == NOT_SPECIFIED))) {
+        if ((
+                getEncoding().equals(Encoding.PCM_SIGNED)
+                || getEncoding().equals(Encoding.PCM_UNSIGNED)
+            )
+            && (
+                (getSampleSizeInBits() > 8)
+                || (getSampleSizeInBits() == NOT_SPECIFIED)
+            )) {
             if (isBigEndian()) {
                 sEndian = "big-endian";
             } else {
@@ -525,12 +542,12 @@ public class TarsosDSPAudioFormat {
         }
 
         return sEncoding
-            + sSampleRate
-            + sSampleSizeInBits
-            + sChannels
-            + sFrameSize
-            + sFrameRate
-            + sEndian;
+               + sSampleRate
+               + sSampleSizeInBits
+               + sChannels
+               + sFrameSize
+               + sFrameRate
+               + sEndian;
 
     }
 
@@ -601,7 +618,8 @@ public class TarsosDSPAudioFormat {
 
         /**
          * Constructs a new encoding.
-         * @param name  the name of the new type of encoding
+         *
+         * @param name the name of the new type of encoding
          */
         public Encoding(String name) {
             this.name = name;
