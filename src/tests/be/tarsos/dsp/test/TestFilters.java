@@ -102,7 +102,7 @@ public class TestFilters {
 		AudioDispatcher dispatcher = new AudioDispatcher(jvmAudioInputStream,stepSize,overlap);
 		dispatcher.addAudioProcessor(new HighPass(startFrequency, sampleRate));
 		dispatcher.addAudioProcessor(new LowPassFS(stopFrequency, sampleRate));
-		dispatcher.addAudioProcessor(new WaveformWriter(format, "filtered.wav"));
+		dispatcher.addAudioProcessor(new WaveformWriter(format, "build/filtered.wav"));
 		dispatcher.run();
 	}
 

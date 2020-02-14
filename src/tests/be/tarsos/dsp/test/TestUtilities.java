@@ -88,12 +88,12 @@ public class TestUtilities {
 	 */
 	public static float[] audioBufferFlute() {
 		int lengthInSamples = 4096;
-		String file = "/be/tarsos/dsp/test/resources/flute.novib.ff.A4.wav";
+		String file = "/flute.novib.ff.A4.wav";
 		return audioBufferFile(file,lengthInSamples);
 	}
-	
+
 	public static File fluteFile(){
-		String file = "/be/tarsos/dsp/test/resources/flute.novib.ff.A4.wav";
+		String file = "/flute.novib.ff.A4.wav";
 		final URL url = TestUtilities.class.getResource(file);
 		try {
 			return new File(new URI(url.toString()));
@@ -101,9 +101,9 @@ public class TestUtilities {
 			return null;
 		}
 	}
-	
+
 	public static File ccirFile(){
-		String file = "/be/tarsos/dsp/test/resources/CCIR_04221.ogg";
+		String file = "/CCIR_04221.ogg";
 		final URL url = TestUtilities.class.getResource(file);
 		try {
 			return new File(new URI(url.toString()));
@@ -111,9 +111,9 @@ public class TestUtilities {
 			return null;
 		}
 	}
-	
+
 	public static File onsetsAudioFile(){
-		String file = "/be/tarsos/dsp/test/resources/NR45.wav";
+		String file = "/NR45.wav";
 		final URL url = TestUtilities.class.getResource(file);
 		try {
 			return new File(new URI(url.toString()));
@@ -121,9 +121,9 @@ public class TestUtilities {
 			return null;
 		}
 	}
-	
+
 	public static File sineOf4000Samples(){
-		String file = "/be/tarsos/dsp/test/resources/4000_samples_of_440Hz_at_44.1kHz.wav";
+		String file = "/4000_samples_of_440Hz_at_44.1kHz.wav";
 		final URL url = TestUtilities.class.getResource(file);
 		try {
 			return new File(new URI(url.toString()));
@@ -131,20 +131,20 @@ public class TestUtilities {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * @return a 4096 samples long 44.1kHz sampled float buffer with the sound
 	 *         of a flute played double forte at B6 (theoretically 1975.53Hz) without vibrato
 	 */
 	public static float[] audioBufferHighFlute() {
 		int lengthInSamples = 4096;
-		String file = "/be/tarsos/dsp/test/resources/flute.novib.ff.B6.wav";
+		String file = "/flute.novib.ff.B6.wav";
 		return audioBufferFile(file,lengthInSamples);
 	}
-	
+
 	/**
 	 * Reads the contents of a file.
-	 * 
+	 *
 	 * @param name
 	 *            the name of the file to read
 	 * @return the contents of the file if successful, an empty string
@@ -171,10 +171,10 @@ public class TestUtilities {
 		}
 		return contents.toString();
 	}
-	
+
 	/**
 	 * Reads the contents of a file in a jar.
-	 * 
+	 *
 	 * @param path
 	 *            the path to read e.g. /package/name/here/help.html
 	 * @return the contents of the file when successful, an empty string
@@ -202,24 +202,24 @@ public class TestUtilities {
 		}
 		return contents.toString();
 	}
-	
+
 	/**
 	 * @return a 4096 samples long 44.1kHz sampled float buffer with the sound
 	 *         of a piano played double forte at A4 (theoretically 440Hz)
 	 */
 	public static float[] audioBufferPiano() {
 		int lengthInSamples = 4096;
-		String file = "/be/tarsos/dsp/test/resources/piano.ff.A4.wav";
+		String file = "/piano.ff.A4.wav";
 		return audioBufferFile(file,lengthInSamples);
 	}
-	
+
 	/**
 	 	 * @return a 4096 samples long 44.1kHz sampled float buffer with the sound
 	 *         of a piano played double forte at C3 (theoretically 130.81Hz)
 	 */
 	public static float[] audioBufferLowPiano() {
 		int lengthInSamples = 4096;
-		String file = "/be/tarsos/dsp/test/resources/piano.ff.C3.wav";
+		String file = "/piano.ff.C3.wav";
 		return audioBufferFile(file,lengthInSamples);
 	}
 	

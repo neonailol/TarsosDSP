@@ -51,9 +51,6 @@ decoder_log*
 ###########
 # Maven
 ###########
-.classpath
-.project
-.settings/
 .idea/
 *.iml
 *.iws
@@ -61,3 +58,9 @@ decoder_log*
 log/
 target/
 
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
