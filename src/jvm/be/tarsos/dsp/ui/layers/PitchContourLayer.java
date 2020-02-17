@@ -97,6 +97,7 @@ public class PitchContourLayer implements Layer {
                 PitchEstimationAlgorithm.FFT_YIN, 44100, frameSize,
                 new PitchDetectionHandler() {
 
+                    @Override
                     public void handlePitch(
                         PitchDetectionResult pitchDetectionResult,
                         AudioEvent audioEvent

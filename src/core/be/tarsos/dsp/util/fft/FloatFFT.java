@@ -2422,7 +2422,7 @@ public strictfp class FloatFFT {
         final float ti12 = 0.587785252292473248125759255344746634f;
         int i, ic;
         float ci2, di2, ci4, ci5, di3, di4, di5, ci3, cr2, cr3, dr2, dr3, dr4, dr5, cr5, cr4, ti2, ti3, ti5, ti4, tr2, tr3, tr4, tr5, w1r
-        , w1i, w2r, w2i, w3r, w3i, w4r, w4i;
+            , w1i, w2r, w2i, w3r, w3i, w4r, w4i;
         int iw1, iw2, iw3, iw4;
         iw1 = offset;
         iw2 = iw1 + ido;
@@ -2565,7 +2565,7 @@ public strictfp class FloatFFT {
         final float ti12 = 0.587785252292473248125759255344746634f;
         int i, ic;
         float ci2, ci3, ci4, ci5, di3, di4, di5, di2, cr2, cr3, cr5, cr4, ti2, ti3, ti4, ti5, dr3, dr4, dr5, dr2, tr2, tr3, tr4, tr5, w1r
-        , w1i, w2r, w2i, w3r, w3i, w4r, w4i;
+            , w1i, w2r, w2i, w3r, w3i, w4r, w4i;
         int iw1, iw2, iw3, iw4;
         iw1 = offset;
         iw2 = iw1 + ido;
